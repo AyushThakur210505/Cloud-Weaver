@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "cloudweaver.aws.v1",
+  "provider": { "name": "aws", "region": "us-east-1" },
+  "variables": {
+    "VpcCidr": { "type": "string", "default": "10.0.0.0/16" },
+    "PublicSubnetCidr": { "type": "string", "default": "10.0.1.0/24" }
+  },
+  "nodes": [
+    {
+      "id": "vpc-1",
+      "type": "vpc",
+      "name": "main-vpc",
+      "rf": { "x": 0, "y": 0 },
+      "config": {
+        "type": "vpc",
+        "cidrBlock": "${VpcCidr}",
+        "enableDnsHostnames": true,
+        "enableDnsSupport": true
+      }
+    },
+    {
+      "id": "subnet-1",
+      "type": "subnet",
+      "name": "public-subnet-a",
+      "rf": { "x": 200, "y": 100 },
+      "config": {
+        "type": "subnet",
+        "cidrBlock": "${PublicSubnetCidr}",
+        "az": "us-east-1a",
+        "mapPublicIpOnLaunch": true
+      }
+    },
+    {
+      "id": "sg-1",
+      "type": "security_group",
+      "name": "web-sg",
+      "rf": { "x": 200, "y": -100 },
+      "config": {
+        "type": "security_group",
+        "description": "Web security group",
+        "ingress": [
+          { "protocol": "tcp", "fromPort": 80, "toPort": 80, "cidr": "0.0.0.0/0" }
+        ],
+        "egress": [
+          { "protocol": "-1", "fromPort": 0, "toPort": 0, "cidr": "0.0.0.0/0" }
+        ]
+      }
+    },
+    {
+      "id": "ec2-1",
+      "type": "ec2_instance",
+      "name": "web-instance",
+      "rf": { "x": 400, "y": 0 },
+      "config": {
+        "type": "ec2_instance",
+        "ami": "ami-1234567890abcdef0",
+        "instanceType": "t3.micro",
+        "keyName": "my-keypair"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "kind": "contains",
+      "source": "vpc-1",
+      "target": "subnet-1"
+    },
+    {
+      "id": "e2",
+      "kind": "uses",
+      "source": "ec2-1",
+      "target": "sg-1"
+    },
+    {
+      "id": "e3",
+      "kind": "hosts",
+      "source": "subnet-1",
+      "target": "ec2-1"
+    }
+  ]
+}

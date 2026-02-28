@@ -1,0 +1,205 @@
+:root {
+  color-scheme: light;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.4;
+  font-weight: 400;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0b1020;
+  color: #e7ecff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.cw-app {
+  display: grid;
+  grid-template-columns: 280px 1fr 360px;
+  grid-template-rows: 56px 1fr 240px;
+  grid-template-areas:
+    "top top top"
+    "left canvas right"
+    "left preview right";
+  height: 100%;
+}
+
+.cw-topbar {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+}
+
+.cw-topbar-title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.cw-topbar-title h1 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.cw-pill {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(120, 140, 255, 0.14);
+  border: 1px solid rgba(120, 140, 255, 0.25);
+  color: #c9d2ff;
+}
+
+.cw-btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: #e7ecff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cw-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cw-left {
+  grid-area: left;
+  padding: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: auto;
+}
+
+.cw-canvas {
+  grid-area: canvas;
+  position: relative;
+  overflow: hidden;
+}
+
+.cw-right {
+  grid-area: right;
+  padding: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: auto;
+}
+
+.cw-preview {
+  grid-area: preview;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cw-panel-title {
+  font-size: 12px;
+  margin: 8px 0 10px;
+  opacity: 0.9;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+.cw-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.cw-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.cw-field {
+  display: grid;
+  gap: 6px;
+}
+
+.cw-label {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.cw-input,
+.cw-select,
+.cw-textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.24);
+  color: #e7ecff;
+  padding: 8px 10px;
+  border-radius: 10px;
+  outline: none;
+}
+
+.cw-textarea {
+  min-height: 90px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+.cw-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 10px 0;
+}
+
+.cw-badge-error {
+  color: #ffd3d3;
+  background: rgba(255, 75, 75, 0.12);
+  border: 1px solid rgba(255, 75, 75, 0.25);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.cw-code {
+  flex: 1;
+  overflow: auto;
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre;
+}
+
+/* React Flow theme */
+.react-flow__controls {
+  box-shadow: none;
+}
+.react-flow__controls button {
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #e7ecff;
+}
+.react-flow__minimap {
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
